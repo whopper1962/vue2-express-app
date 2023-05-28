@@ -1,0 +1,14 @@
+version: "3.4"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - ./frontend:/frontend
+    tty: true
+    stdin_open: true
