@@ -3,7 +3,7 @@ version: "3.4"
 services:
   frontend:
     build: ./frontend
-    container_name: frontend
+    container_name: vue-frontend
     ports:
       - "8080:8080"
     expose:
@@ -12,3 +12,13 @@ services:
       - ./frontend:/frontend
     tty: true
     stdin_open: true
+
+  backend:
+    container_name: express-backend
+    build:
+      context: ./backend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./backend:/app
+    tty: true
