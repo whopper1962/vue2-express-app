@@ -1,15 +1,17 @@
 <template>
-  <div id="app">
-    <home-view></home-view>
+  <div>
+    <NavBar></NavBar>
+    <div class="p-3">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import HomeView from './views/HomeView.vue'
+import NavBar from "./components/NavBar.vue";
 export default {
-  components: { HomeView },
-}
+  components: { NavBar },
+};
 </script>
 
-<style>
-</style>
+<style></style>

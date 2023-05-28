@@ -4,21 +4,45 @@ services:
   frontend:
     build: ./frontend
     container_name: vue-frontend
-    ports:
-      - "8080:8080"
     expose:
       - "8080"
     volumes:
       - ./frontend:/frontend
     tty: true
     stdin_open: true
+    ports:
+      - "8080:8080"
 
   backend:
     container_name: express-backend
     build:
       context: ./backend
-    ports:
-      - 3000:3000
     volumes:
       - ./backend:/app
+    environment:
+      APP_PORT: 3000
+      VUE_APP_ORIGIN: "http://localhost:8000"
+      DB_HOST: "database"
+      DB_PORT: 5432
+      DB_DATABASE: "resource_app"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "password"
+    ports:
+      - 3000:3000
     tty: true
+
+  database:
+    image: postgres:15
+    container_name: postgres-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+      TZ: "Asia/Tokyo"
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_data:
