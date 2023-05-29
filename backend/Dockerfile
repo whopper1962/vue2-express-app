@@ -1,13 +1,14 @@
-FROM node:11-alpine
+FROM node:20-alpine3.17
 
-RUN mkdir -p /usr/src/app
+ENV LANG C.UTF-8
+ENV TZ Asia/Tokyo
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . .
+COPY package.json package-lock.json ./
 
 RUN npm install
 
-EXPOSE 3000
+COPY . .
 
-CMD ["npm", "run", "start"]
+CMD npm run dev

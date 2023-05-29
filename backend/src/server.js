@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors(config.cors));
 
 app.get("/", (_, res) => {
-  res.status(200).send("hello world");
+  res.status(200).send("hello00111 aaa");
 });
 
 app.listen(config.port, config.host, (e) => {
