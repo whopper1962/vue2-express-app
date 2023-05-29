@@ -1,19 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-const config = {
-  name: "sample-express-app",
-  port: 3000,
-  host: "0.0.0.0",
-};
+const config = require("./configs/general.config");
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(config.cors));
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.status(200).send("hello world");
 });
 
